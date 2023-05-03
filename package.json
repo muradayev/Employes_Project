@@ -8,6 +8,10 @@
     "start": "webpack-dev-server --output-public-path=/bundles/  --mode development --open --hot",
     "build": "webpack --progress"
   },
+  "keywords": [
+    "employees",
+    "project"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {

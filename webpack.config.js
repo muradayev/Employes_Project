@@ -10,7 +10,7 @@ module.exports = {
   mode: "production",
   devtool: "source-map",
   devServer: {
-    port: 5500,
+    port: 5050,
     static: {
       directory: path.join(__dirname, "/")
     },
