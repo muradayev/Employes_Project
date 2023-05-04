@@ -61,8 +61,19 @@ export class UI {
         this.departmentInput.value = children[1].textContent
         this.salaryInput.value = children[2].textContent
 
+    }
 
-
+    updateEmployeeOnUI(updatedEmployee, parent) {
+        parent.innerHTML = `
+                <tr>
+                    <td>${updatedEmployee.name}</td>
+                    <td>${updatedEmployee.department}</td>
+                    <td>${updatedEmployee.salary}</td>
+                    <td>${updatedEmployee.id}</td>
+                    <td><a href="#" id="update-employee" class="btn btn-success">Update</a></td>
+                    <td> <a href="#" id="delete-employee" class="btn btn-danger">Delete</a></td>
+                </tr>
+            `
     }
 
     clearInputs() {

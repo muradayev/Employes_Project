@@ -11,12 +11,15 @@ const updateEmpBtn = document.getElementById("update")
 const request = new Requests("http://localhost:3000/employees")
 const ui = new UI()
 
+let updateState = null
+
 eventListeners()
 
 function eventListeners() {
     document.addEventListener("DOMContentLoaded", getAllEmployes)
     form.addEventListener("submit", addEmployee)
     employesList.addEventListener("click", updateOrDelete)
+    updateEmpBtn.addEventListener("click", updateEmployee)
 }
 
 function getAllEmployes() {
@@ -78,4 +81,30 @@ function deleteEmployee(targetEmployee) {
 
 function updateEmployeeController(targetEmployee) {
     ui.toggleUpdateButton(targetEmployee)
+
+    if (updateState === null) {
+        updateState = {
+            employeeId: targetEmployee.children[3].textContent,
+            updateParent: targetEmployee
+        }
+    }
+    else {
+        updateState = null
+    }
+}
+
+function updateEmployee() {
+    if (updateState) {
+        const data = {
+            name: nameInput.value.trim(),
+            department: departmentInput.value.trim(),
+            salary: Number(salaryInput.value.trim())
+        }
+
+        request.put(updateState.employeeId, data)
+            .then(updatedEmp => {
+                ui.updateEmployeeOnUI(updatedEmp, updateState.updateParent)
+            })
+            .catch(err => console.error(err))
+    }
 }
