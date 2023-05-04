@@ -43,6 +43,28 @@ export class UI {
         parentElement.remove()
     }
 
+    toggleUpdateButton(targetEmployee) {
+        if (this.updateEmpBtn.style.display === "none") {
+            this.updateEmpBtn.style.display = "block"
+            this.addEmployeeInfoToInputs(targetEmployee)
+        }
+        else {
+            this.updateEmpBtn.style.display = "none"
+            this.clearInputs()
+        }
+    }
+
+    addEmployeeInfoToInputs(targetEmployee) {
+        const children = targetEmployee.children
+
+        this.nameInput.value = children[0].textContent
+        this.departmentInput.value = children[1].textContent
+        this.salaryInput.value = children[2].textContent
+
+
+
+    }
+
     clearInputs() {
         this.nameInput.value = ""
         this.salaryInput.value = ""

@@ -58,7 +58,7 @@ function updateOrDelete(e) {
         deleteEmployee(e.target)
     }
     else if (e.target.id === "update-employee") {
-
+        updateEmployeeController(e.target.parentElement.parentElement)
     }
 }
 
@@ -74,4 +74,8 @@ function deleteEmployee(targetEmployee) {
             ui.deleteEmployeeFromUI(parentElement)
         })
         .catch(err => console.error(err))
+}
+
+function updateEmployeeController(targetEmployee) {
+    ui.toggleUpdateButton(targetEmployee)
 }
